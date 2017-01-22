@@ -122,7 +122,7 @@ A11 = Ab(1:n-r,1:n-r);
 A22 = Ab(n-(r-1),n-(r-1));
 A12 = Ab(1:n-r,n-(r-1));
 
-Ah = A11 - A12*Q22^(-1)*Q12';
+Ah = A11 + A12*Q22^(-1)*Q12';
 Bh = A12;
 
 Qh = Q11 -Q12*Q22^(-1)*Q12';
@@ -135,8 +135,8 @@ if((n-r)~=rank(O))
     error('Observability Error: Pair (Ah,Db), Db^(T)DB=Qh, must be observable.');
 end
 
-P = are(Ah,Bh*inv(Rh)*Bh',Qh)
-K = inv(Q22)*(A12'*P + Q12')
+P = are(Ah,Bh*inv(Rh)*Bh',Qh);
+K = inv(Q22)*(A12'*P + Q12');
 
 
 elseif (n==r)
